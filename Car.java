@@ -1,6 +1,7 @@
 
 /**
  * This class represents a car for a car rental agency
+ * @version (2023a)
  * @author Ariel Arie
  */
 
@@ -16,6 +17,10 @@ public class Car {
     private final int MIN_ID_NUM = 999999; // Lower range of ID number
     private final int DEF_ID = 9999999; // Default ID number
     private final char DEF_TYPE = 'A'; // Default type
+    private final char A_TYPE = 'A'; // A type
+    private final char B_TYPE = 'B'; // B type
+    private final char C_TYPE = 'C'; // C type
+    private final char D_TYPE = 'D'; // D type
 
     /**
      * Constructs a car. Initialize an instance of Car With the car details
@@ -32,7 +37,7 @@ public class Car {
             _id = id;
         else _id = DEF_ID;
 
-        if(type == 'A' || type == 'B' || type == 'C' || type == 'D') // Checking the rating of the car
+        if(type == A_TYPE || type == B_TYPE || type == C_TYPE || type == D_TYPE) // Checking the rating of the car
             _type = type;
         else _type = DEF_TYPE;
 
@@ -117,7 +122,7 @@ public class Car {
      * @param _type the car rating
      */
     public void setType(char type){
-        if(type == 'A' || type == 'B' || type == 'C' || type == 'D') // Checking the rating of the car
+        if(type == A_TYPE || type == B_TYPE || type == C_TYPE || type == D_TYPE) // Checking the rating of the car
             _type = type;
 
     } // end of setType method
