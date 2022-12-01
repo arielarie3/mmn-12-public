@@ -1,7 +1,7 @@
 /**
  * This class represents a Rent object.
- * @version (2022)
- * @author Ariel Arie.
+ * @version (2023a)
+ * @author Ariel Arie
  */
 public class Rent
 {
@@ -9,6 +9,13 @@ public class Rent
     Car _car; // Car object
     Date _pickDate; // The pick date
     Date _returnDate;// The return date
+
+    //The class constants:
+
+    private final int TYPE_A_PRICE = 100; // Day rent price of A type car
+    private final int TYPE_B_PRICE = 150; // Day rent price of B type car
+    private final int TYPE_C_PRICE = 180; // Day rent price of C type car
+    private final int TYPE_D_PRICE = 240; // Day rent price of D type car  
 
     /**
      * Creates a new Rent object
@@ -28,7 +35,7 @@ public class Rent
             _returnDate = new Date (ret); 
         }
 
-        else _returnDate = pick.tomorrow();
+        else _returnDate = new Date (pick.tomorrow());
 
     } // end of Rent method
     /**
@@ -139,19 +146,19 @@ public class Rent
         int day_price = 0;
         if (_car.getType() == 'A')
         {
-            day_price = 100;
+            day_price = TYPE_A_PRICE;
         }
         else if (_car.getType() == 'B')
         {
-            day_price = 150;
+            day_price = TYPE_B_PRICE;
         }
         else if (_car.getType() == 'C')
         {
-            day_price = 180;
+            day_price = TYPE_C_PRICE;
         }
         else if (_car.getType() == 'D')
         {
-            day_price = 240;
+            day_price = TYPE_D_PRICE;
         }
 
         return day_price;
