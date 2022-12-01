@@ -1,7 +1,7 @@
 /**
  * This class represents a date.
- * @version (2022)
- * @author Ariel Arie.
+ * @version (2023a)
+ * @author Ariel Arie
  */
 public class Date {
 
@@ -11,12 +11,27 @@ public class Date {
 
     //The class constants:
 
-    private final int MAX_DAY = 31; // Upper range of days in a month
+    private final int MAX_DAY_IN_LONG_MONTH = 31; // Upper range of days in a long month
+    private final int MAX_DAY_IN_SHORT_MONTH = 30; // Upper range of days in a short month
+    private final int LEEPYEAR_MAX_DAY_IN_FEBRUARY = 29; // The upper range of the number of days in February in a leap year
+    private final int NOT_LEEPYEAR_MAX_DAY_IN_FEBRUARY = 28; // The upper range of the number of days in February in a non-leap year
     private final int MIN_DAY = 1; // Lower range of days in a month
     private final int MAX_MONTH = 12; // Upper range of the months of the year
     private final int MIN_MONTH = 1; // Lower range of the months of the year
     private final int MAX_YEAR = 9999; // Upper range of the years
     private final int MIN_YEAR = 1000; // Lower range of the years
+    private final int JANUARY = 1;
+    private final int FEBRUARY = 2;
+    private final int MARCH = 3;
+    private final int APRIL = 4;
+    private final int MAY = 5;
+    private final int JUNE = 6;
+    private final int JULY = 7;
+    private final int AUGUST = 8;
+    private final int SEPTEMBER = 9;
+    private final int OCTOBER = 10;
+    private final int NOVEMBER = 11;
+    private final int DECEMBER = 12;
 
     /**
      * A private method that checks whether a year is a leap year or not. 
@@ -50,27 +65,27 @@ public class Date {
 
     private boolean isValidDate(int day, int month, int year)
     {
-        if (((day >= MIN_DAY) && (day <= MAX_DAY) && (month >= MIN_MONTH) && (month <= MAX_MONTH) && (year >= MIN_YEAR) && (year <= MAX_YEAR))) // Checking whether the checked date is within the correct ranges
+        if (((day >= MIN_DAY) && (day <= MAX_DAY_IN_LONG_MONTH) && (month >= MIN_MONTH) && (month <= MAX_MONTH) && (year >= MIN_YEAR) && (year <= MAX_YEAR))) // Checking whether the checked date is within the correct ranges
         {
 
-            if (month == 1|| month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) 
+            if (month == JANUARY|| month == MARCH || month == MAY || month == JULY || month == AUGUST || month == OCTOBER || month == DECEMBER) 
             {
                 return true;
             }
 
-            else if ((month == 4 || month == 6 || month == 9 || month == 11) && day <= 30)
+            else if ((month == APRIL || month == JUNE || month == SEPTEMBER || month == NOVEMBER) && day <= MAX_DAY_IN_SHORT_MONTH)
             {
                 return true;
             }
 
-            else if (month == 2)
+            else if (month == FEBRUARY)
             {
-                if (isLeapYear(year) && day <= 29)
+                if (isLeapYear(year) && day <= LEEPYEAR_MAX_DAY_IN_FEBRUARY)
                 {
                     return true;
                 }
 
-                else if (isLeapYear(year) == false && day <= 28)
+                else if (isLeapYear(year) == false && day <= NOT_LEEPYEAR_MAX_DAY_IN_FEBRUARY)
                 {
                     return true;
                 }
@@ -100,7 +115,7 @@ public class Date {
         else 
         {
             _day = 1;
-            _month = 1;
+            _month = JANUARY;
             _year = 2000;
         }
     } // end of Date method
@@ -276,37 +291,37 @@ public class Date {
         int tomorrowMonth = _month;
         int tomorrowYear = _year;
 
-        if ((tomorrowMonth == 1|| tomorrowMonth == 3 || tomorrowMonth == 5 || tomorrowMonth == 7 || tomorrowMonth == 8 || tomorrowMonth == 10) && (tomorrowDay == 31)) // A case where the resulting day is the last day of the months with 31 days 
+        if ((tomorrowMonth == JANUARY|| tomorrowMonth == MARCH || tomorrowMonth == MAY || tomorrowMonth == JULY|| tomorrowMonth == AUGUST || tomorrowMonth == OCTOBER) && (tomorrowDay == MAX_DAY_IN_LONG_MONTH)) // A case where the resulting day is the last day of the months with 31 days 
         {
             tomorrowDay = 1;
             tomorrowMonth ++;
         }
 
-        else if ((tomorrowMonth == 4 || tomorrowMonth == 6 || tomorrowMonth == 9 || tomorrowMonth == 11) && (tomorrowDay == 30)) // A case where the resulting day is the last day of the 30-day months
+        else if ((tomorrowMonth == APRIL || tomorrowMonth == JUNE || tomorrowMonth == SEPTEMBER || tomorrowMonth == NOVEMBER) && (tomorrowDay == MAX_DAY_IN_SHORT_MONTH)) // A case where the resulting day is the last day of the 30-day months
         {
             tomorrowDay = 1;
             tomorrowMonth ++;
         }
 
-        else if ((tomorrowMonth == 12) && (tomorrowDay == 31)) // A case where the resulting day is the last day of the year
+        else if ((tomorrowMonth == DECEMBER) && (tomorrowDay == MAX_DAY_IN_LONG_MONTH)) // A case where the resulting day is the last day of the year
         {
             tomorrowDay = 1;
-            tomorrowMonth = 1;
+            tomorrowMonth = JANUARY;
             tomorrowYear ++;
         }
 
-        else if (tomorrowMonth == 2)
+        else if (tomorrowMonth == FEBRUARY)
         {
-            if (isLeapYear(tomorrowYear) && (tomorrowDay == 29)) // End of a month of a leap year
+            if (isLeapYear(tomorrowYear) && (tomorrowDay == LEEPYEAR_MAX_DAY_IN_FEBRUARY)) // End of a month of a leap year
             {
                 tomorrowDay = 1;
-                tomorrowMonth = 3;
+                tomorrowMonth = MARCH;
             }
 
-            else if (isLeapYear(tomorrowYear) == false && (tomorrowDay == 28)) // End of a month of a non-leap year
+            else if (isLeapYear(tomorrowYear) == false && (tomorrowDay == NOT_LEEPYEAR_MAX_DAY_IN_FEBRUARY)) // End of a month of a non-leap year
             {
                 tomorrowDay = 1;
-                tomorrowMonth = 3;
+                tomorrowMonth = MARCH;
             }
             else tomorrowDay ++;
 
