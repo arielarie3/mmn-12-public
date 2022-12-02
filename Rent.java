@@ -129,7 +129,7 @@ public class Rent
      */
     public boolean equals(Rent other)
     {
-        return ((_name.equals(other._name)) && (_pickDate.equals(other._pickDate)) && (_returnDate.equals(other._returnDate)) && (_car.equals(other._returnDate)));
+        return ((_name.equals(other._name)) && (_pickDate.equals(other._pickDate)) && (_returnDate.equals(other._returnDate)) && (_car.equals(other._car)));
     }  // end of equals method
     /**
      * Returns the number of rent days
